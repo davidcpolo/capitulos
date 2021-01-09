@@ -1,0 +1,1262 @@
+
+    {
+        "id": "b222df39.5f3f9",
+        "type": "tab",
+        "label": "Lavadora",
+        "disabled": false,
+        "info": "Controla todas las automatizaciones de la lavadora"
+    },
+    {
+        "id": "72aa251b.4e3ce4",
+        "type": "server-state-changed",
+        "z": "b222df39.5f3f9",
+        "name": "Consumo W",
+        "server": "782466e.a972498",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.lavadora_watios",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "num",
+        "haltifstate": "10",
+        "halt_if_type": "num",
+        "halt_if_compare": "gt",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 90,
+        "y": 140,
+        "wires": [
+            [
+                "737f8ad4.d22774"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "737f8ad4.d22774",
+        "type": "api-current-state",
+        "z": "b222df39.5f3f9",
+        "name": "Estado",
+        "server": "782466e.a972498",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "Apagado",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_select.lavadora_status",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 260,
+        "y": 120,
+        "wires": [
+            [
+                "817a15df.4213a8",
+                "ad9b91ae.d6c71"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "817a15df.4213a8",
+        "type": "api-call-service",
+        "z": "b222df39.5f3f9",
+        "name": "Cambia estado",
+        "server": "782466e.a972498",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_select",
+        "service": "select_option",
+        "entityId": "input_select.lavadora_status",
+        "data": "{\"option\":\"Lavando\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 460,
+        "y": 80,
+        "wires": [
+            [
+                "3efa29be.24fc96"
+            ]
+        ]
+    },
+    {
+        "id": "8e49f446.b07f38",
+        "type": "api-call-service",
+        "z": "b222df39.5f3f9",
+        "name": "Dot",
+        "server": "782466e.a972498",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "alexa_media_echo_dot_de_david",
+        "entityId": "",
+        "data": "{\"message\":\"Lavadora en marcha, en cuanto termine te aviso para tender la ropa.\",\"data\":{\"type\":\"tts\"}}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 970,
+        "y": 40,
+        "wires": [
+            [
+                "51265030.963518"
+            ]
+        ]
+    },
+    {
+        "id": "f3c717f.46021e8",
+        "type": "api-call-service",
+        "z": "b222df39.5f3f9",
+        "name": "Volumen",
+        "server": "782466e.a972498",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "volume_set",
+        "entityId": "media_player.echo_dot_de_david",
+        "data": "{\"volume_level\":\"1\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 840,
+        "y": 40,
+        "wires": [
+            [
+                "8e49f446.b07f38"
+            ]
+        ]
+    },
+    {
+        "id": "b3f2ed4c.68511",
+        "type": "server-state-changed",
+        "z": "b222df39.5f3f9",
+        "name": "Consumo W",
+        "server": "782466e.a972498",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.lavadora_watios",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "num",
+        "haltifstate": "5",
+        "halt_if_type": "num",
+        "halt_if_compare": "lt",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "1",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 90,
+        "y": 440,
+        "wires": [
+            [
+                "216e06eb.cdc4fa"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "216e06eb.cdc4fa",
+        "type": "api-current-state",
+        "z": "b222df39.5f3f9",
+        "name": "Estado",
+        "server": "782466e.a972498",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "Lavando",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_select.lavadora_status",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 260,
+        "y": 420,
+        "wires": [
+            [
+                "2e0ab549.b39e9a"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "2e0ab549.b39e9a",
+        "type": "api-current-state",
+        "z": "b222df39.5f3f9",
+        "name": "Geolocalización",
+        "server": "782466e.a972498",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "not_home",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "group.familia",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 430,
+        "y": 420,
+        "wires": [
+            [
+                "182e8238.cdbab6",
+                "35cc5768.4cecc",
+                "ae03eaf6.9a72c"
+            ],
+            [
+                "6c0a1215.43d58c"
+            ]
+        ]
+    },
+    {
+        "id": "182e8238.cdbab6",
+        "type": "api-call-service",
+        "z": "b222df39.5f3f9",
+        "name": "Cambia estado",
+        "server": "782466e.a972498",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_select",
+        "service": "select_option",
+        "entityId": "input_select.lavadora_status",
+        "data": "{\"option\":\"Espera\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 660,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "35cc5768.4cecc",
+        "type": "api-call-service",
+        "z": "b222df39.5f3f9",
+        "name": "David",
+        "server": "782466e.a972498",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "david",
+        "entityId": "",
+        "data": "{\"message\":\"La lavadoraya ha terminado, pasará a modo de espera, cuando llegues a casa te lo recordaré para tender la ropa.\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 630,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ae03eaf6.9a72c",
+        "type": "api-call-service",
+        "z": "b222df39.5f3f9",
+        "name": "Gema",
+        "server": "782466e.a972498",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "gema",
+        "entityId": "",
+        "data": "{\"message\":\"La lavadoraya ha terminado, pasará a modo de espera, cuando llegues a casa te lo recordaré para tender la ropa.\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 630,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "34875325.e7aaf4",
+        "type": "server-state-changed",
+        "z": "b222df39.5f3f9",
+        "name": "Puerta",
+        "server": "782466e.a972498",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "binary_sensor.sensor_puerta_00_01_00_entrada_interior",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 70,
+        "y": 640,
+        "wires": [
+            [
+                "4aba4791.df95a"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "4aba4791.df95a",
+        "type": "api-current-state",
+        "z": "b222df39.5f3f9",
+        "name": "Estado",
+        "server": "782466e.a972498",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "Espera",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_select.lavadora_status",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 220,
+        "y": 620,
+        "wires": [
+            [
+                "a1aa58bf.7e892"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a1aa58bf.7e892",
+        "type": "api-call-service",
+        "z": "b222df39.5f3f9",
+        "name": "Cambia estado",
+        "server": "782466e.a972498",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_select",
+        "service": "select_option",
+        "entityId": "input_select.lavadora_status",
+        "data": "{\"option\":\"Finalizado\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 410,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6c0a1215.43d58c",
+        "type": "api-call-service",
+        "z": "b222df39.5f3f9",
+        "name": "Cambia estado",
+        "server": "782466e.a972498",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_select",
+        "service": "select_option",
+        "entityId": "input_select.lavadora_status",
+        "data": "{\"option\":\"Finalizado\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 660,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e371364c.9b63a",
+        "type": "server-state-changed",
+        "z": "b222df39.5f3f9",
+        "name": "Estado",
+        "server": "782466e.a972498",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_select.lavadora_status",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "Finalizado",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "x": 70,
+        "y": 880,
+        "wires": [
+            [
+                "9d2d99ec.3f6818"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "df74e842.d13b08",
+        "type": "delay",
+        "z": "b222df39.5f3f9",
+        "name": "Repite en 30min",
+        "pauseType": "delay",
+        "timeout": "30",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1140,
+        "y": 780,
+        "wires": [
+            [
+                "f8af1c44.0eb1e8"
+            ]
+        ]
+    },
+    {
+        "id": "c16a0b02.6fceb8",
+        "type": "api-call-service",
+        "z": "b222df39.5f3f9",
+        "name": "Dot",
+        "server": "782466e.a972498",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "alexa_media_echo_dot_de_david",
+        "entityId": "",
+        "data": "{\"message\":\"La lavadora ya ha terminado, ya puedes tender la ropa. Te lo recordaré en 30 minutos si no me avisas que ya lo has hecho.\",\"data\":{\"type\":\"tts\"}}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1470,
+        "y": 720,
+        "wires": [
+            [
+                "ad14401e.b4a7a8"
+            ]
+        ]
+    },
+    {
+        "id": "35adf180.f3eba6",
+        "type": "api-call-service",
+        "z": "b222df39.5f3f9",
+        "name": "Dot",
+        "server": "782466e.a972498",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "alexa_media_echo_dot_de_david",
+        "entityId": "",
+        "data": "{\"message\":\"La lavadora ya ha terminado, ya puedes tender la ropa. Te lo recordaré en 30 minutos si no me avisas que ya lo has hecho.\",\"data\":{\"type\":\"tts\"}}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 550,
+        "y": 780,
+        "wires": [
+            [
+                "4e46db5a.921484"
+            ]
+        ]
+    },
+    {
+        "id": "66144493.26eeec",
+        "type": "api-call-service",
+        "z": "b222df39.5f3f9",
+        "name": "Volumen",
+        "server": "782466e.a972498",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "volume_set",
+        "entityId": "media_player.echo_dot_de_david",
+        "data": "{\"volume_level\":\"0.9\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 420,
+        "y": 780,
+        "wires": [
+            [
+                "35adf180.f3eba6"
+            ]
+        ]
+    },
+    {
+        "id": "f8af1c44.0eb1e8",
+        "type": "api-current-state",
+        "z": "b222df39.5f3f9",
+        "name": "Input boolean",
+        "server": "782466e.a972498",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.fin_colada",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 1320,
+        "y": 780,
+        "wires": [
+            [
+                "c16a0b02.6fceb8"
+            ],
+            [
+                "fb278bca.d8abe"
+            ]
+        ]
+    },
+    {
+        "id": "fb278bca.d8abe",
+        "type": "change",
+        "z": "b222df39.5f3f9",
+        "name": "Reset",
+        "rules": [
+            {
+                "t": "set",
+                "p": "reset",
+                "pt": "msg",
+                "to": "now",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1230,
+        "y": 860,
+        "wires": [
+            [
+                "df74e842.d13b08"
+            ]
+        ]
+    },
+    {
+        "id": "959e2d8e.7860f",
+        "type": "api-call-service",
+        "z": "b222df39.5f3f9",
+        "name": "David",
+        "server": "782466e.a972498",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "david",
+        "entityId": "",
+        "data": "{\"message\":\"Lavadora en marcha, en cuanto termine te aviso para tender la ropa.\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 830,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4f94a642.2e2e48",
+        "type": "api-call-service",
+        "z": "b222df39.5f3f9",
+        "name": "Gema",
+        "server": "782466e.a972498",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "gema",
+        "entityId": "",
+        "data": "{\"message\":\"Lavadora en marcha, en cuanto termine te aviso para tender la ropa.\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 830,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1766bde9.2e19ca",
+        "type": "delay",
+        "z": "b222df39.5f3f9",
+        "name": "Repite en 30min",
+        "pauseType": "delay",
+        "timeout": "30",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 720,
+        "y": 960,
+        "wires": [
+            [
+                "7f449e92.fc4728"
+            ]
+        ]
+    },
+    {
+        "id": "7f449e92.fc4728",
+        "type": "api-current-state",
+        "z": "b222df39.5f3f9",
+        "name": "Input boolean",
+        "server": "782466e.a972498",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.fin_colada",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 900,
+        "y": 960,
+        "wires": [
+            [
+                "2b34c42b.985824",
+                "89d9ffb2.fbd28"
+            ],
+            [
+                "e1cbd292.ac2c9"
+            ]
+        ]
+    },
+    {
+        "id": "e1cbd292.ac2c9",
+        "type": "change",
+        "z": "b222df39.5f3f9",
+        "name": "Reset",
+        "rules": [
+            {
+                "t": "set",
+                "p": "reset",
+                "pt": "msg",
+                "to": "now",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 810,
+        "y": 1040,
+        "wires": [
+            [
+                "1766bde9.2e19ca"
+            ]
+        ]
+    },
+    {
+        "id": "14722b1e.83e475",
+        "type": "api-call-service",
+        "z": "b222df39.5f3f9",
+        "name": "David",
+        "server": "782466e.a972498",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "david",
+        "entityId": "",
+        "data": "{\"message\":\"La lavadora ya ha terminado, ya puedes tender la ropa. Te lo recordaré en 30 minutos si no me avisas que ya lo has hecho.\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 430,
+        "y": 920,
+        "wires": [
+            [
+                "1766bde9.2e19ca"
+            ]
+        ]
+    },
+    {
+        "id": "5c7e53ce.1f1a4c",
+        "type": "api-call-service",
+        "z": "b222df39.5f3f9",
+        "name": "Gema",
+        "server": "782466e.a972498",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "gema",
+        "entityId": "",
+        "data": "{\"message\":\"La lavadora ya ha terminado, ya puedes tender la ropa. Te lo recordaré en 30 minutos si no me avisas que ya lo has hecho.\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 430,
+        "y": 980,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "89d9ffb2.fbd28",
+        "type": "api-call-service",
+        "z": "b222df39.5f3f9",
+        "name": "David",
+        "server": "782466e.a972498",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "david",
+        "entityId": "",
+        "data": "{\"message\":\"La lavadora ya ha terminado, ya puedes tender la ropa. Te lo recordaré en 30 minutos si no me avisas que ya lo has hecho.\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1070,
+        "y": 900,
+        "wires": [
+            [
+                "1766bde9.2e19ca"
+            ]
+        ]
+    },
+    {
+        "id": "2b34c42b.985824",
+        "type": "api-call-service",
+        "z": "b222df39.5f3f9",
+        "name": "Gema",
+        "server": "782466e.a972498",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "gema",
+        "entityId": "",
+        "data": "{\"message\":\"La lavadora ya ha terminado, ya puedes tender la ropa. Te lo recordaré en 30 minutos si no me avisas que ya lo has hecho.\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1070,
+        "y": 960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "16add571.53658b",
+        "type": "comment",
+        "z": "b222df39.5f3f9",
+        "name": "info",
+        "info": "Si el consumo en W sube por encima de 10w...",
+        "x": 80,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "775c8f25.a4f3d8",
+        "type": "comment",
+        "z": "b222df39.5f3f9",
+        "name": "info",
+        "info": "... Comprobamos que el estado de la lavadora sea Apagado...",
+        "x": 250,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "945717fb.998158",
+        "type": "comment",
+        "z": "b222df39.5f3f9",
+        "name": "info",
+        "info": "... ponemos el estado en lavando y, si estamos dentro de el horario (9-22h) se anuncia mediante Alexa que empieza a funcionar la lavadora. Si no estamos en el horario se manda un mensaje al Telegram.",
+        "x": 450,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "89c430c5.251df",
+        "type": "comment",
+        "z": "b222df39.5f3f9",
+        "name": "info",
+        "info": "Cuando el consumo esté por debajo de 5w...",
+        "x": 90,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "63f603f1.b5ed44",
+        "type": "comment",
+        "z": "b222df39.5f3f9",
+        "name": "info",
+        "info": "... comprobamos que el estado sea lavando...",
+        "x": 270,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "57254de3.037d2c",
+        "type": "comment",
+        "z": "b222df39.5f3f9",
+        "name": "info",
+        "info": "... y si estamos fuera de casa pasamos el estado a Espera y mandamos un mensaje al Telegram diciendo que ya ha terminado la lavadora y que cuando lleguemos a casa lo recordaremos. Si estamos casa pasamos es estado a Finalizado",
+        "x": 430,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "99c33da7.cf5728",
+        "type": "comment",
+        "z": "b222df39.5f3f9",
+        "name": "info",
+        "info": "Cuando llegamos a casa y se abra la puerta...",
+        "x": 70,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "f192e0fd.aff49",
+        "type": "comment",
+        "z": "b222df39.5f3f9",
+        "name": "info",
+        "info": "... miramos el estado a ver si es Espera...",
+        "x": 230,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "22bda718.cc54d8",
+        "type": "comment",
+        "z": "b222df39.5f3f9",
+        "name": "info",
+        "info": "... y cambiamos el estado a Finalizado.",
+        "x": 390,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "5ce96a57.304554",
+        "type": "comment",
+        "z": "b222df39.5f3f9",
+        "name": "info",
+        "info": "Cuando pasa el estado a Finalizado...",
+        "x": 70,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "62e601ee.50881",
+        "type": "comment",
+        "z": "b222df39.5f3f9",
+        "name": "info",
+        "info": "... y estamos dentro del horario (9-22h) anunciamos que ya ha terminado la lavadora y lo recordamos cada 30 minutos...",
+        "x": 230,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "63ec479.6a996b8",
+        "type": "comment",
+        "z": "b222df39.5f3f9",
+        "name": "info",
+        "info": "... hacemos un contador que cada vez que pasa 30 minutos anuncia que tenemos que tender la ropa. esto se repite hasta que le decimos a Alexa que ya hemos tendido la ropa. Gracias a un input boolean que cambia a off y eso hace que se resetee el contador y se pare. Esto lo hacemos con un script en home assistant y que lo pone en marcha Alexa con un comando de voz.\nSi estamos en horario lo anunciará por voz y si estamos fuera de horario por Telegram, comprobando antes que el estado de la la lavadora es Finalizado para que no inicie las acciones cuando la lavadora esté parada, ya que el nodo bigtimer se lanza automaticamente en el periodo de tiempo indicado",
+        "x": 430,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "ad9b91ae.d6c71",
+        "type": "api-call-service",
+        "z": "b222df39.5f3f9",
+        "name": "input boolean",
+        "server": "782466e.a972498",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "entityId": "input_boolean.fin_colada",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 460,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3efa29be.24fc96",
+        "type": "time-range-switch",
+        "z": "b222df39.5f3f9",
+        "name": "9am-10pm",
+        "lat": "38.67491",
+        "lon": "-4.12068",
+        "startTime": "09:00",
+        "endTime": "22:00",
+        "startOffset": 0,
+        "endOffset": 0,
+        "x": 650,
+        "y": 80,
+        "wires": [
+            [
+                "f3c717f.46021e8"
+            ],
+            [
+                "959e2d8e.7860f",
+                "4f94a642.2e2e48"
+            ]
+        ]
+    },
+    {
+        "id": "9d2d99ec.3f6818",
+        "type": "time-range-switch",
+        "z": "b222df39.5f3f9",
+        "name": "9am-10pm",
+        "lat": "38.67491",
+        "lon": "-4.12068",
+        "startTime": "09:00",
+        "endTime": "22:00",
+        "startOffset": 0,
+        "endOffset": 0,
+        "x": 230,
+        "y": 880,
+        "wires": [
+            [
+                "66144493.26eeec"
+            ],
+            [
+                "14722b1e.83e475",
+                "5c7e53ce.1f1a4c"
+            ]
+        ]
+    },
+    {
+        "id": "51265030.963518",
+        "type": "delay",
+        "z": "b222df39.5f3f9",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "6",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1110,
+        "y": 40,
+        "wires": [
+            [
+                "95232fcd.bbd9f8"
+            ]
+        ]
+    },
+    {
+        "id": "95232fcd.bbd9f8",
+        "type": "api-call-service",
+        "z": "b222df39.5f3f9",
+        "name": "Volumen",
+        "server": "782466e.a972498",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "volume_set",
+        "entityId": "media_player.echo_de_david",
+        "data": "{\"volume_level\":\"1\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1260,
+        "y": 40,
+        "wires": [
+            [
+                "ffb3ac2.a5e4dd"
+            ]
+        ]
+    },
+    {
+        "id": "ffb3ac2.a5e4dd",
+        "type": "api-call-service",
+        "z": "b222df39.5f3f9",
+        "name": "Echo",
+        "server": "782466e.a972498",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "alexa_media_echo_de_david",
+        "entityId": "",
+        "data": "{\"message\":\"Lavadora en marcha, en cuanto termine te aviso para tender la ropa.\",\"data\":{\"type\":\"tts\"}}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1390,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ad14401e.b4a7a8",
+        "type": "delay",
+        "z": "b222df39.5f3f9",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "9",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1600,
+        "y": 720,
+        "wires": [
+            [
+                "294a3ab0.290d5e"
+            ]
+        ]
+    },
+    {
+        "id": "294a3ab0.290d5e",
+        "type": "api-call-service",
+        "z": "b222df39.5f3f9",
+        "name": "Echo",
+        "server": "782466e.a972498",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "alexa_media_echo_de_david",
+        "entityId": "",
+        "data": "{\"message\":\"La lavadora ya ha terminado, ya puedes tender la ropa. Te lo recordaré en 30 minutos si no me avisas que ya lo has hecho.\",\"data\":{\"type\":\"tts\"}}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1730,
+        "y": 720,
+        "wires": [
+            [
+                "df74e842.d13b08"
+            ]
+        ]
+    },
+    {
+        "id": "4e46db5a.921484",
+        "type": "delay",
+        "z": "b222df39.5f3f9",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "9",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 680,
+        "y": 780,
+        "wires": [
+            [
+                "65f5e43b.a479dc"
+            ]
+        ]
+    },
+    {
+        "id": "65f5e43b.a479dc",
+        "type": "api-call-service",
+        "z": "b222df39.5f3f9",
+        "name": "Volumen",
+        "server": "782466e.a972498",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "volume_set",
+        "entityId": "media_player.echo_de_david",
+        "data": "{\"volume_level\":\"0.9\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 820,
+        "y": 780,
+        "wires": [
+            [
+                "e043027c.3fc21"
+            ]
+        ]
+    },
+    {
+        "id": "e043027c.3fc21",
+        "type": "api-call-service",
+        "z": "b222df39.5f3f9",
+        "name": "Echo",
+        "server": "782466e.a972498",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "alexa_media_echo_de_david",
+        "entityId": "",
+        "data": "{\"message\":\"La lavadora ya ha terminado, ya puedes tender la ropa. Te lo recordaré en 30 minutos si no me avisas que ya lo has hecho.\",\"data\":{\"type\":\"tts\"}}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 950,
+        "y": 780,
+        "wires": [
+            [
+                "df74e842.d13b08"
+            ]
+        ]
+    },
+    {
+        "id": "782466e.a972498",
+        "type": "server",
+        "name": "Home Assistant",
+        "legacy": false,
+        "addon": true,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true,
+        "cacheJson": true
+    }
+]
